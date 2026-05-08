@@ -1,27 +1,3 @@
-CREATE TABLE order_details(
-order_details_id INT,
-order_id INT,
-pizza_id VARCHAR(50),
-quantity INT
-);
-CREATE TABLE orders(
-order_id INT,
-date_ DATE,
-time_ TIME
-);
-CREATE TABLE pizza_types(
-pizza_type_id VARCHAR(100),
-name_ VARCHAR(100),
-category VARCHAR(50),
-ingredients VARCHAR(200)
-);
-CREATE TABLE pizzas(
-pizza_id VARCHAR(50),
-pizza_type_id VARCHAR(100),
-size_ VARCHAR(5),
-price FLOAT,
-FOREIGN KEY (pizza_type_id) REFERENCES pizza_types(pizza_type_id)
-);
 -- Q1. Total orders.
 SELECT COUNT(order_details_id) FROM order_details;
 -- Q2. Total quantity sold.
@@ -40,7 +16,6 @@ LIMIT 1;
 SELECT EXTRACT(DAY FROM date_) AS Day_ , COUNT(order_id) AS no_of_orders FROM orders 
 GROUP BY EXTRACT(DAY FROM date_)
 ORDER BY EXTRACT(DAY FROM date_);
-
 -- Q7. most ordered pizza.
 SELECT pizza_id  FROM order_details
 ORDER BY quantity DESC
